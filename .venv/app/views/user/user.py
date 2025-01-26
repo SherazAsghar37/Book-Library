@@ -1,16 +1,17 @@
 # app/views.py (your existing view file)
 from flask import render_template, redirect, session, url_for, flash
 from app.controllers.forms import RegistrationForm, LoginForm
-from app.controllers.user import create_user, login_user,get_all_users 
 from . import user_bp as user
+from app.controllers.user import UserController
 
+user_controller = UserController()
 
 @user.route('/register', methods=['GET', 'POST'])
 def register():
     try:
         form = RegistrationForm()
         if form.validate_on_submit():
-            user = create_user(
+            user = user_controller.create_user(
                 form.first_name.data,
                 form.last_name.data,
                 form.email.data,
@@ -31,7 +32,7 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = login_user(form.email.data, form.password.data)
+        user = user_controller.login_user(form.email.data, form.password.data)
         if user and not user.is_admin:
             flash('Logged in successfully', 'success')
             session['user_id'] = user.id  
@@ -45,7 +46,7 @@ def admin_login():
     print("Here")
     form = LoginForm()
     if form.validate_on_submit():
-        user = login_user(form.email.data, form.password.data)
+        user = user_controller.login_user(form.email.data, form.password.data)
         if  user and user.is_admin:
             flash('Logged in successfully', 'success')
             session['user_id'] = user.id  
@@ -67,7 +68,7 @@ def admin_panel():
 
 @user.route('/get_all_students', methods=['GET'])
 def get_all_students():
-    users = get_all_users(False)
+    users = user_controller.get_all_users(False)
     if not users:
         flash('Users not found', 'warning')
         

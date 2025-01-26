@@ -20,14 +20,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     
-    @app.route('/some_route')
-    def some_route():
-        if 'logged_in' in session:
-            pass
-        else:
-            return redirect(url_for('user.login'))
-
-    
     # Register blueprints
     from .views.home import main
     from .views.books import books_bp as books
@@ -46,10 +38,11 @@ def create_app():
         print(f"Checking for existing user with")
         admin_email = 'admin@gmail.com'
         existing_user = User.query.filter_by(email=admin_email).first()
-        from app.controllers.user import create_user
+        from app.controllers.user import UserController
+        user_controller = UserController()
         dob_date = datetime.strptime("2003-1-1", '%Y-%m-%d').date()
         if existing_user is None:
-            create_user(
+            user_controller.create_user(
                 first_name='Admin',
                 last_name='Admin',
                 email=admin_email,
