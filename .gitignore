@@ -1,7 +1,7 @@
 /migrations
 /.venv/Scripts/
 /.venv/migrations/
-/.venv/database/db
+/.venv/database.db
 /.venv/pyvenv.cfg
 /.venv/Lib/
 /.venv/Include/
