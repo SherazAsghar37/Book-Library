@@ -47,7 +47,7 @@ def create_app():
         admin_email = 'admin@gmail.com'
         existing_user = User.query.filter_by(email=admin_email).first()
         from app.controllers.user import create_user
-        dob_date = datetime.strptime("2024-1-1", '%Y-%m-%d').date()
+        dob_date = datetime.strptime("2003-1-1", '%Y-%m-%d').date()
         if existing_user is None:
             create_user(
                 first_name='Admin',

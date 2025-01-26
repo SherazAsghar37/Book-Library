@@ -1,1 +1,11 @@
 /migrations
+/.venv/Scripts/
+/.venv/migrations/
+/.venv/database/db
+/.venv/pyvenv.cfg
+/.venv/Lib/
+/.venv/Include/
+/.venv/app/__pycache__/
+/.venv/app/controllers/__pycache__/
+/.venv/app/models/__pycache__/
+/.venv/app/views/__pycache__/
