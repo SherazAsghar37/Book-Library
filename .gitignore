@@ -9,3 +9,6 @@
 /.venv/app/controllers/__pycache__/
 /.venv/app/models/__pycache__/
 /.venv/app/views/__pycache__/
+/.venv/app/views/books/__pycache__/
+/.venv/app/views/cart/__pycache__/
+/.venv/app/views/user/__pycache__/
