@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(#617a8e, #895552, gray);
+        color: white;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        height: 100vh;
+      }
+
+      .content {
+        max-width: 50%;
+      }
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .contact {
+        margin-top: 30px;
+      }
+
+      .contact p {
+        font-size: 18px;
+      }
+
+      .image-container {
+        max-width: 45%;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Include the navbar using Jinja -->
+    {% include 'navbar.html' %}
+
+    <div class="container">
+      <div class="content">
+        <h1>About Us</h1>
+        <p>
+          Discover your next great book! Online Library is a discovery tool for
+          readers, highlighting the best new books across all genres. Library is
+          editorially independent; only books we highly recommend are featured.
+        </p>
+        <p>
+          You can find your next favorite book. And on this journey with your
+          friends, you can explore new territory, gather information, and expand
+          your mind. Knowledge is power, and power is best shared among readers.
+        </p>
+        <div class="contact">
+          <p><strong>Contact Us:</strong></p>
+          <p>Email: onlinelibrary@gmail.com</p>
+          <p>Phone: +92 123456789</p>
+        </div>
+      </div>
+      <div class="image-container">
+        <img
+          src="{{ url_for('static', filename='images/lib.jpg') }}"
+          alt="Library Image"
+        />
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

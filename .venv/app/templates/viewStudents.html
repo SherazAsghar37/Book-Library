@@ -1,0 +1,53 @@
+<!-- app/templates/users.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Information</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <style>
+      .card {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <header>{% include 'navbar.html' %}</header>
+  <body>
+    <div class="container mt-5">
+      <h1>User Information</h1>
+      <div class="row">
+        {% for user in users %}
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ user.first_name }} {{ user.last_name }}
+              </h5>
+              <p class="card-text">
+                <strong>Email:</strong> {{ user.email }}<br />
+                <strong>Gender:</strong> {{ user.gender }}<br />
+                <strong>Date of Birth:</strong> {{ user.dob.strftime('%Y-%m-%d')
+                if user.dob else 'N/A' }}<br />
+                <strong>Address:</strong> {{ user.address if user.address else
+                'N/A' }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Form</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* Custom styles if needed */
+      .vh-100 {
+        height: 100vh;
+      }
+      .option {
+        font-weight: bold;
+      }
+      .flashed-messages {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1050; /* Ensures it is above other elements */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Include the navbar using Jinja -->
+    {% include 'navbar.html' %}
+    <section
+      class="vh-100"
+      style="background: linear-gradient(#617a8e, #895552, gray)"
+    >
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                    alt="checkout form"
+                    class="img-fluid"
+                    style="border-radius: 1rem 0 0 1rem"
+                  />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                  <div class="card-body p-4 p-lg-5 text-black">
+                    <form action="{{ url_for('cart.checkout') }}" method="POST">
+                      {{ form.csrf_token }}
+                      <div class="d-flex align-items-center mb-3 pb-1">
+                        <i
+                          class="fas fa-shopping-cart fa-2x me-3"
+                          style="color: #ff6219"
+                        ></i>
+                        <span class="h1 fw-bold mb-0">Checkout</span>
+                      </div>
+
+                      <h5
+                        class="fw-normal mb-3 pb-3"
+                        style="letter-spacing: 1px"
+                      >
+                        Enter your shipping information
+                      </h5>
+
+                      <div class="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="form-control form-control-lg"
+                          required
+                        />
+                        <label class="form-label" for="name">Full Name</label>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="address"
+                          name="address"
+                          class="form-control form-control-lg"
+                          required
+                        />
+                        <label class="form-label" for="address"
+                          >Shipping Address</label
+                        >
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          class="form-control form-control-lg"
+                          required
+                        />
+                        <label class="form-label" for="phone"
+                          >Phone Number</label
+                        >
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="form-control form-control-lg"
+                          required
+                        />
+                        <label class="form-label" for="email"
+                          >Email Address</label
+                        >
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="card_number"
+                          name="card_number"
+                          class="form-control form-control-lg"
+                          required
+                        />
+                        <label class="form-label" for="card_number"
+                          >Card Number</label
+                        >
+                      </div>
+
+                      <!-- Add the Place Order button -->
+                      <button
+                        type="submit"
+                        class="btn btn-dark btn-lg btn-block"
+                      >
+                        Place Order
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

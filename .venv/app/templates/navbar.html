@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: rgba(204, 225, 229, 0.616)"
+    >
+      <a class="navbar-brand" href="{{ url_for('main.home') }}">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+          class="circular--square"
+          style="width: 60px"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li
+            class="nav-item {% if request.endpoint == 'main.home' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
+          </li>
+          {% if 'is_admin' in session %}
+          <li
+            class="nav-item {% if request.endpoint == 'user.admin_panel' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('user.admin_panel') }}"
+              >Admin Panel</a
+            >
+          </li>
+          {% endif %}
+          <li
+            class="nav-item {% if request.endpoint == 'books.getBooks' %}active{% endif %}"
+          >
+            <a
+              class="nav-link"
+              href="{{ url_for('books.getBooks',action_type='view') }}"
+              >Books</a
+            >
+          </li>
+          <li
+            class="nav-item {% if request.endpoint == 'main.about' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+          </li>
+          {% if 'logged_in' not in session %}
+          <li
+            class="nav-item {% if request.endpoint == 'user.register' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('user.register') }}"
+              >New User</a
+            >
+          </li>
+          {% endif %} {% if 'is_admin' not in session and 'logged_in' in session
+          %}
+          <li
+            class="nav-item {% if request.endpoint == 'cart.cart_page' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('cart.cart_page') }}"
+              >My Cart</a
+            >
+          </li>
+          {% endif %} {% if 'logged_in' in session %}
+          <li
+            class="nav-item {% if request.endpoint == 'user.logout' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('user.logout') }}">Logout</a>
+          </li>
+          {% else %}
+          <li
+            class="nav-item {% if request.endpoint == 'user.login' %}active{% endif %}"
+          >
+            <a class="nav-link" href="{{ url_for('user.login') }}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="container mt-2">
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book List</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(#617a8e, #895552, gray);
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        margin: 20px;
+        color: #333;
+      }
+      .book-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px auto;
+        max-width: 1200px;
+      }
+      .book-card {
+        flex: 1 1 calc(16.66% - 40px);
+        margin: 20px;
+        background-color: rgba(239, 225, 225, 0.227);
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .book-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        max-height: 300px;
+      }
+      .book-title {
+        margin: 10px 0;
+        font-size: 1.1rem;
+        color: #333;
+      }
+      .book-author {
+        font-size: 0.9rem;
+        color: #666;
+      }
+      /* Responsive styles */
+      @media (max-width: 1200px) {
+        .book-card {
+          flex: 1 1 calc(25% - 40px);
+        }
+      }
+      @media (max-width: 768px) {
+        .book-card {
+          flex: 1 1 calc(33.33% - 40px);
+        }
+      }
+      @media (max-width: 576px) {
+        .book-card {
+          flex: 1 1 calc(50% - 40px);
+        }
+      }
+      @media (max-width: 400px) {
+        .book-card {
+          flex: 1 1 calc(100% - 40px);
+        }
+      }
+    </style>
+    {% include 'navbar.html' %}
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <h1>Book List</h1>
+
+    <div class="book-container">
+      {% for book in books %}
+      <a
+        href="{{ url_for('books.book_detail', book_id=book.id,action_type=action_type) }}"
+      >
+        <div class="book-card">
+          <img
+            src="{{  url_for('static', filename='uploads/' + book.image_url) }}"
+            alt="Book Cover"
+          />
+          <div class="book-title">{{ book.title }}</div>
+          <div class="book-author">{{ book.author }}</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </body>
+</html>
